@@ -4,6 +4,19 @@ using namespace std;
 int N;
 unsigned long cnt = 1;
 
+void _pow(int n){
+  long long a = 0, b = 0, mod = 1000000000000000000;
+  for(int i=0; i<n; i++){
+    b*=2;
+    a = 2 * a + 1;
+    b += a / mod;
+    a %= mod;
+  }
+  if(b>0) cout << b << a << '\n';
+  else cout << a << '\n';
+}
+
+
 void hanoi(int n, int from, int by, int to)
 {
   if(n == 0) return;
@@ -14,11 +27,7 @@ void hanoi(int n, int from, int by, int to)
 
 int main() {
   scanf("%d", &N);
-  for(int i = 0; i < N ; i++) {
-    cnt = cnt * 2;
-  }
-  cnt--;
-  printf("%lu\n",cnt);
+  _pow(N);
   if(N <= 20)
     hanoi(N,1,2,3);
 }
